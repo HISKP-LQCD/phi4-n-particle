@@ -1,0 +1,50 @@
+
+======================
+   phi4-n-particle:
+======================
+
+This code allows to generate complex phi4 field configurations and to calculate the corresponding n particle correlation
+functions. It consists of the following components:
+
+- complex.cpp
+  ===========
+  Contains the functions for the calculation of the complex product, conjugate and power function as well as the
+  function for the substraction of two complex numbers
+
+- scalar.cpp
+  ==========
+  Contains different functions for calculating, copying and updating lattice points, initializing, copying and printing
+  the lattice field as well as reading in the start configuration
+
+- action.cpp
+  ==========
+  Contains the functions for the calculation of the action S and the change in action \Delta S required in
+  "metropolis.cpp"
+
+- metropolis.cpp
+  ==============
+  Contains the metropolis algorithm which is required in "calculate_toytest.cpp" in the course of the calculation of
+  field configurations
+
+- calculate_toytest.cpp
+  =====================
+  Executes the creation of "n_save" field configuration files "scalar_X_Y_Z_T_(n_conf).txt" which are read in in
+  "calculate_corr.cpp" in order to calculate the n particle correlators
+
+- correlators.cpp
+  ===============
+  Contains the function for the calculation of the n particle correlation function
+
+- calculate_corr.cpp
+  ==================
+  Executes the calculation of the n particle correlation function by calling the function "correlator_n()" included in
+  "correlators.cpp"
+
+
+Random numbers, which are needed to initialize the lattice field, to update a field point (scalar.cpp) as well as to run
+the metropolis algorithm (metropolis.cpp), are created via the standard cpp mersenne twister "mt19937"
+(see generator_singleton.h).
+
+In order to run the program:
+Choose your parameters in "parameters.h" and type "./toytest" to create new field configurations or "./corr" to
+calculate the correlators from those configurations.
